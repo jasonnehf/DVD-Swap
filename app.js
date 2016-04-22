@@ -4,11 +4,20 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var stormpath = require('express-stormpath');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+app.use(stormpath.init(app, {
+  website: true
+}));
+
+// app.on('stormpath.ready', function() {
+//   app.listen(3000);
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
