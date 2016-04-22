@@ -1,0 +1,14 @@
+{
+  "name": "dvdSwap",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/ashley2/DVD-Swap",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
