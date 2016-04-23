@@ -8,10 +8,7 @@ angular.module('dvdSwap')
 
 })
 
-angular.module('dvdSwap')
-.controller('profileCtrl', function($scope){
 
-})
 
 angular.module('dvdSwap')
 .controller('adminCtrl', function($scope){

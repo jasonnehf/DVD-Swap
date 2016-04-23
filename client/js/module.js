@@ -13,7 +13,7 @@ angular.module('dvdSwap', ['ui.router'])
   .state('profile', {
     url: "/profile",
     templateUrl: "html/profile.html",
-    controller: "profileCtrl"
+    controller: "userCtrl"
   })
   .state('login', {
     url: "/login",

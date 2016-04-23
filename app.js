@@ -12,8 +12,25 @@ var users = require('./routes/users');
 var app = express();
 
 app.use(stormpath.init(app, {
-  website: true
+  website: true,
+  web: {
+    login: {
+      nextUri: '/#/profile'
+    }
+    // register: {
+    //   nextUri: '
+    // }
+  }
 }));
+
+
+
+
+
+// app.get('/#/profile', stormpath.loginRequired, function(req, res) {
+//   res.send('Welcome back: ' + res.locals.user.email);
+//   console.log('res', res)
+// });
 
 // app.on('stormpath.ready', function() {
 //   app.listen(3000);
