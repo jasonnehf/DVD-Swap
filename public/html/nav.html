@@ -11,13 +11,16 @@
         <a class="navbar-brand" ui-sref="browse">MovieSwap</a>
       </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
+
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a ui-sref="browse">Browse</a></li>
           <!-- <li><a ui-sref="/new-listing.html">New Listing</a></li> -->
           <li><a ui-sref="profile">Profile</a></li>
-          <li><a ui-sref="login">Login / Register</a></li>
+          <li><a href="/login" ng-if="!user">Login</a></li>
+          <!-- on click of login "user.isLogged === true" -->
+          <li><a ui-sref="login" ng-id="user.isLogged">Logout</a></li>
+          <!-- on click  of logout "user.isLogged === false" -->
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

@@ -18,7 +18,7 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
-              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                 Tradername Someone
               </a>
               <a href="" class="btn btn-xs btn-default fa fa-trash"></a>
@@ -36,7 +36,7 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 Imaguy Traderman
               </a>
               <a href="" class="btn btn-xs btn-default fa fa-trash"></a>
@@ -54,7 +54,7 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingThree">
             <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                 Soandso Swapgirl
               </a>
               <a href="" class="btn btn-xs btn-default fa fa-trash"></a>
@@ -74,68 +74,32 @@
   </div>
 
 
-  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
-    <form action="submit">
-      <center>
-        <input type="text" placeholder="Title">
-        <select name="Swap" id="">
-          <option value="trade">Trade</option>
-          <option value="wanted">Want</option>
-        </select>
-        <button>Submit</button>
-      </center>
-
-    </form>
-  </div>  
 
 
   <div class="col-xs-12 col-sm-4">
-    <h2>For Trade</h2>
-    <div class="well scrolly">
+    <h2>Movies I have...</h2>
 
-      <div class="panel trade-panel">
-        <div class="col-xs-12 col-sm-3">
-          <img src="http://placehold.it/50x75" alt="">
-        </div>
-        <h3><a href="/detail.html">Movie Title</a></h3>
-        <h4>Permanent Trade</h4>
-      </div>
-      <div class="panel trade-panel">
-        <div class="col-xs-12 col-sm-3">
-          <img src="http://placehold.it/50x75" alt="">
-        </div>
-        <h3><a href="/detail.html">Movie Title</a></h3>
-        <h4>Temporary Trade</h4>
-      </div>
-      <div class="panel trade-panel">
-        <div class="col-xs-12 col-sm-3">
-          <img src="http://placehold.it/50x75" alt="">
-        </div>
-        <h3><a href="/detail.html">Movie Title</a></h3>
-        <h4>Permanent Trade</h4>
-      </div>
-      <div class="panel trade-panel">
-        <div class="col-xs-12 col-sm-3">
-          <img src="http://placehold.it/50x75" alt="">
-        </div>
-        <h3><a href="/detail.html">Movie Title</a></h3>
-        <h4>Permanent Trade</h4>
-      </div>
+    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="movie in getMatches(searchText)" md-item-text="movie"  placeholder="Title">
+    <span md-highlight-text="searchText">{{movie}}</span>
+  </md-autocomplete>
+  <md-button class="md-raised">Submit</md-button>
 
+  <div class="well scrolly">
+    <!-- ng-repeat on have  -->
+    <div class="panel trade-panel"> 
+      <div class="col-xs-12 col-sm-3">
+        <img src="http://placehold.it/50x75" alt="">
+      </div>
+      <h3><a href="/detail.html">Movie Title</a></h3>
+      <h4>Permanent Trade</h4>
     </div>
-  </div>
-
-  <div class="col-xs-12 col-sm-4">
-    <h2>Wanted</h2>
-    <div class="well scrolly">
-
-      <div class="panel trade-panel">
+<!--       <div class="panel trade-panel">
         <div class="col-xs-12 col-sm-3">
           <img src="http://placehold.it/50x75" alt="">
         </div>
         <h3><a href="/detail.html">Movie Title</a></h3>
-        <h4>Temporary Trade</h4>
+        <h4>Permanent Trade</h4>
       </div>
       <div class="panel trade-panel">
         <div class="col-xs-12 col-sm-3">
@@ -149,14 +113,49 @@
           <img src="http://placehold.it/50x75" alt="">
         </div>
         <h3><a href="/detail.html">Movie Title</a></h3>
-        <h4>Temporary Trade</h4>
+        <h4>Permanent Trade</h4> -->
+        <!-- </div> -->
+
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <h2>Movies I want...</h2>
+      <!-- ng-repeat on wanted movies -->
+      
+      <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText2" md-items="movie in getMatches(searchText)" md-item-text="movie"  placeholder="Title">
+      <span md-highlight-text="searchText">{{movie}}</span>
+    </md-autocomplete>
+    <md-button class="md-raised">Submit</md-button>
+    <div class="well scrolly">
+
+      <div class="panel trade-panel">
+        <div class="col-xs-12 col-sm-3">
+          <img src="http://placehold.it/50x75" alt="">
+        </div>
+        <h3><a href="/detail.html">Movie Title</a></h3>
+        <h4>Permanent Trade</h4>
       </div>
       <div class="panel trade-panel">
         <div class="col-xs-12 col-sm-3">
           <img src="http://placehold.it/50x75" alt="">
         </div>
         <h3><a href="/detail.html">Movie Title</a></h3>
-        <h4>Temporary Trade</h4>
+        <h4>Permanent Trade</h4>
+      </div>
+      <div class="panel trade-panel">
+        <div class="col-xs-12 col-sm-3">
+          <img src="http://placehold.it/50x75" alt="">
+        </div>
+        <h3><a href="/detail.html">Movie Title</a></h3>
+        <h4>Permanent Trade</h4>
+      </div>
+      <div class="panel trade-panel">
+        <div class="col-xs-12 col-sm-3">
+          <img src="http://placehold.it/50x75" alt="">
+        </div>
+        <h3><a href="/detail.html">Movie Title</a></h3>
+        <h4>Permanent Trade</h4>
       </div>
 
     </div>
@@ -164,16 +163,21 @@
 
   <div class="col-xs-12 col-sm-4">
     <h2>Trade History</h2>
-    <div class="well scrolly">
 
-      <div class="panel trade-panel text-center history">
-        <img src="http://placehold.it/50x75" alt="">
-        <h4>for</h4>
-        <img src="http://placehold.it/50x75" alt="">
-        <p class="text-center">Temporary Trade</p>
-        <p>12/13/16</p>
-      </div>
-      <div class="panel trade-panel text-center history">
+    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText3" md-items="movie in getMatches(searchText)" md-item-text="movie"  placeholder="Title">
+    <span md-highlight-text="searchText">{{movie}}</span>
+  </md-autocomplete>
+  <md-button class="md-raised">Submit</md-button>
+    <div class="well scrolly">
+     <!-- ng-repeat on trades history -->
+     <div class="panel trade-panel text-center history">
+      <img src="http://placehold.it/50x75" alt="">
+      <h4>for</h4>
+      <img src="http://placehold.it/50x75" alt="">
+      <p class="text-center">Permanent Trade</p>
+      <p>12/13/16</p>
+    </div>
+    <!--   <div class="panel trade-panel text-center history">
         <img src="http://placehold.it/50x75" alt="">
         <h4>for</h4>
         <img src="http://placehold.it/50x75" alt="">
@@ -191,9 +195,9 @@
         <img src="http://placehold.it/50x75" alt="">
         <h4>for</h4>
         <img src="http://placehold.it/50x75" alt="">
-        <p class="text-center">Temporary Trade</p>
+        <p class="text-center">Permanent Trade</p>
         <p>12/13/16</p>
-      </div>
+      </div> -->
 
 
     </div>

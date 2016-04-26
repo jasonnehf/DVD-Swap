@@ -16,20 +16,27 @@ app.use(stormpath.init(app, {
   web: {
     login: {
       nextUri: '/#/profile'
-    }
-    // register: {
-    //   nextUri: '
-    // }
+    },
+    logout: {
+    enabled: true,
+    uri: '/logout',
+    nextUri: '/#/goodbye'
+  }
   }
 }));
 
 
+app.get('/#profile', stormpath.groupsRequired(['free users', 'admins']), function (req, res) {
+  res.send('If you can see this page, you must be in the `free users` and `admins` group!');
+});
 
-
+app.get('/admin', stormpath.groupsRequired(['admin']), function (req, res) {
+  res.send('If you can see this page, you must be in the `admins` group!');
+});
 
 // app.get('/#/profile', stormpath.loginRequired, function(req, res) {
 //   res.send('Welcome back: ' + res.locals.user.email);
-//   console.log('res', res)
+
 // });
 
 // app.on('stormpath.ready', function() {

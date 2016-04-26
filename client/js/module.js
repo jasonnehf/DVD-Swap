@@ -1,4 +1,4 @@
-angular.module('dvdSwap', ['ui.router'])
+angular.module('dvdSwap', ['ui.router', 'ngMaterial'])
 .config(function($stateProvider, $urlRouterProvider){
 
 
@@ -30,6 +30,11 @@ angular.module('dvdSwap', ['ui.router'])
     templateUrl: "html/interest.html",
     controller: "interestCtrl"
   })
+  .state('detail', {
+    url: "/detail",
+    templateUrl: "html/detail.html"
+    // controller: "interestCtrl"
+  }) 
 
 
 })

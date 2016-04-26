@@ -13,10 +13,11 @@ router.get('/profile', stormpath.getUser, function (req, res) {
   if (req.user) {
     res.send(req.user);
   } else {
-    res.send('Not logged in');
+    res.status(401).send('Not logged in');
   }
 });
 
 
 
 module.exports = router;
+
