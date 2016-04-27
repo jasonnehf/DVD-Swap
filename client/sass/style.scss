@@ -1,3 +1,5 @@
+$interestPrimary: #97c52c;
+
 footer {
 
   height: 50px;
@@ -14,3 +16,19 @@ md-autocomplete {
   width: calc(100% - 108px);
   min-width: unset;
 }
+
+div.jumbotron {
+  background-color: $interestPrimary;
+  margin: 0;
+}
+
+svg#bigTriangleColor {
+  pointer-events: none;
+}
+
+#bigTriangleColor path {
+  fill: $interestPrimary;
+  stroke: $interestPrimary;
+  stroke-width: 2;
+}
+
