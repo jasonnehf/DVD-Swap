@@ -35,6 +35,15 @@ angular.module('dvdSwap', ['ui.router', 'ngMaterial'])
     templateUrl: "html/detail.html"
     // controller: "interestCtrl"
   }) 
-
+  .state('goodbye', {
+    url: "/goodbye",
+    templateUrl: "html/goodbye.html"
+  }) 
+  // .state('nav', {
+  //   url: "/nav",
+  //   templateUrl: "html/nav.html"
+  //   controller: "navCtrl"
+  // }) 
+ 
 
 })

@@ -1,5 +1,11 @@
 $interestPrimary: #97c52c;
 
+
+@font-face {
+  font-family: "splashFont";
+  src: url("../media/HVD_Comic_Serif_Pro-webfont.woff") format("woff");
+}
+
 footer {
 
   height: 50px;
@@ -11,6 +17,14 @@ body {
   padding-top: 62px;
 }
 
+.modal {
+  top: 10;
+}
+
+#myModal {
+  vertical-align: middle;
+}
+
 md-autocomplete {
   display: inline-block;
   width: calc(100% - 108px);
@@ -18,9 +32,12 @@ md-autocomplete {
 }
 
 div.jumbotron {
+  height: 80%;
   background-color: $interestPrimary;
   margin: 0;
+  padding-top: 10%;
 }
+
 
 svg#bigTriangleColor {
   pointer-events: none;
@@ -32,3 +49,16 @@ svg#bigTriangleColor {
   stroke-width: 2;
 }
 
+.splash {
+  height: 100vh;
+  color: white;
+  h1 {
+    font-size: 7rem;
+    margin-left: 0px;
+    font-family: "splashFont";
+  }
+}
+
+.closeModal {
+  background-color: $interestPrimary;
+}

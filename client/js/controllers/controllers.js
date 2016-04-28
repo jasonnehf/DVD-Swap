@@ -16,7 +16,9 @@ angular.module('dvdSwap')
 })
 
 angular.module('dvdSwap')
-.controller('interestCtrl', function($scope){
+.controller('adminCtrl', function($scope){
 
 })
+
+
 
