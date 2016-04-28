@@ -44,7 +44,7 @@ gulp.task('js', ['clean:js'], function() {
   .pipe(ngAnnotate())
   .pipe(babel({presets:['es2015']}))
   .pipe(concat('bundle.js'))
-  .pipe(uglify())
+  // .pipe(uglify())
   .pipe(gulp.dest('public/js'));
 });
 

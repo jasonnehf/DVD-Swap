@@ -1,23 +1,15 @@
 'use strict'
 
 angular.module('dvdSwap')
-.controller('userCtrl', function($scope, UserService, $rootScope) {
+.controller('userCtrl', function($scope, UserService, $rootScope, $state) {
 
 
  UserService.getUser()
- .then(function(res) {
-  // $scope.user = res.data
-  $rootScope.user = res.data
-  console.log('$scope.user ' , $rootScope.user);
 
-
-}, function(err){
-  $rootScope.user = null;
-  console.log('err', err);
-});
-
-
-
+ .catch(function(res){
+ $state.go('interest')
+ })
+ 
  var movies = ["movie1", "movie2", "movie3"];
 
  $scope.getMatches = function(text){
@@ -26,3 +18,4 @@ angular.module('dvdSwap')
 
 
 })
+

@@ -1,3 +1,5 @@
+'use strict'
+
 angular.module('dvdSwap', ['ui.router', 'ngMaterial'])
 .config(function($stateProvider, $urlRouterProvider){
 
@@ -39,11 +41,6 @@ angular.module('dvdSwap', ['ui.router', 'ngMaterial'])
     url: "/goodbye",
     templateUrl: "html/goodbye.html"
   }) 
-  // .state('nav', {
-  //   url: "/nav",
-  //   templateUrl: "html/nav.html"
-  //   controller: "navCtrl"
-  // }) 
- 
+
 
 })

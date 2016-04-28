@@ -1,14 +1,22 @@
 'use strict';
 
-var app = angular.module('dvdSwap');
+angular.module('dvdSwap').service('UserService', function($http, $rootScope) {
 
+  
+  this.getUser = function(){ 
+    return $http.get('/users/profile')
+    .then(function(res) {
+      $rootScope.user = res.data
+    }, function(err){
+      $rootScope.user = null;
+      throw err;
+      console.log('err', err);
+    });
+  }
 
-
-app.service('UserService', function($http) {
-
-  this.getUser = () =>  $http.get('/users/profile')  
 
   this.logoutUser = () => $http.post('/logout')
 
   
 })
+
