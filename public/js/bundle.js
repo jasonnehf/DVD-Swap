@@ -90,12 +90,24 @@ angular.module('dvdSwap').controller('userCtrl', ["$scope", "UserService", "$roo
     $state.go('interest');
   });
 
-  var movies = ["movie1", "movie2", "movie3"];
+  var movies = ["movie1", "movie2", "movie3", "movie4"];
 
   $scope.getMatches = function (text) {
     return movies.filter(function (movie) {
       return movie.includes(text);
     });
+  };
+
+  $scope.movieHave = [];
+
+  // add disable button if nothing is in search bar
+  $scope.addHave = function (searchText) {
+    $scope.movieHave.push(searchText);
+  };
+
+  $scope.movieWant = [];
+  $scope.addWant = function (searchText2) {
+    $scope.movieWant.push(searchText2);
   };
 }]);
 "use strict";
@@ -106,6 +118,7 @@ angular.module('dvdSwap').service('UserService', ["$http", "$rootScope", functio
   this.getUser = function () {
     return $http.get('/users/profile').then(function (res) {
       $rootScope.user = res.data;
+      console.log(res.data);
     }, function (err) {
       $rootScope.user = null;
       throw err;

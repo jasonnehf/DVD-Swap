@@ -14,9 +14,9 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+          <li><a ui-sref="profile" ng-if="user">Profile</a></li>
           <li><a ui-sref="browse">Browse</a></li>
           <!-- <li><a ui-sref="/new-listing.html">New Listing</a></li> -->
-          <li><a ui-sref="profile">Profile</a></li>
           <li><a href="/login" ng-if="!user">Login</a></li>
           <li><a ui-sref="goodbye" ng-if="user" ng-click="logout(user)">Logout</a></li>
 

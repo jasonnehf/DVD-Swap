@@ -1,9 +1,15 @@
 $interestPrimary: #97c52c;
 
 
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,200);
+
 @font-face {
   font-family: "splashFont";
   src: url("../media/HVD_Comic_Serif_Pro-webfont.woff") format("woff");
+}
+
+* {
+  font-family: 'Raleway', sans-serif;
 }
 
 footer {
@@ -17,8 +23,13 @@ body {
   padding-top: 62px;
 }
 
+
 .modal {
   top: 10;
+}
+
+.btn:focus{
+  outline: none;
 }
 
 #myModal {
@@ -62,3 +73,19 @@ svg#bigTriangleColor {
 .closeModal {
   background-color: $interestPrimary;
 }
+
+.well {
+  background-color: $interestPrimary;
+  font-size: 5rem;
+  color: white:
+
+.scrolly {
+  height: 400px;
+  overflow-x: scroll;
+}
+
+.dvds {
+min-height: 415px;
+}
+
+
