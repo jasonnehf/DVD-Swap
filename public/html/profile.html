@@ -117,7 +117,7 @@
   <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="movie in getMatches(searchText)" md-item-text="movie"  placeholder="Title">
   <span md-highlight-text="searchText">{{movie}}</span>
 </md-autocomplete>
-<md-button class="md-raised" ng-click="addHave(searchText)">Submit</md-button>
+<md-button class="md-raised profileBtn" ng-click="addHave(searchText)">Submit</md-button>
 <div class="well scrolly">Add A Movie!
   <div ng-repeat="movie in movieHave track by $index" class="panel trade-panel"> 
     <div class="col-xs-12 col-sm-3">
@@ -136,7 +136,7 @@
   <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText2" md-items="movie in getMatches(searchText2)" md-item-text="movie"  placeholder="Title">
   <span md-highlight-text="searchText2">{{movie}}</span>
 </md-autocomplete>
-<md-button class="md-raised" ng-click="addWant(searchText2)">Submit</md-button>
+<md-button class="md-raised profileBtn" ng-click="addWant(searchText2)">Submit</md-button>
 <div class="well scrolly">
   <div ng-repeat="movie in movieWant track by $index" class="panel trade-panel">
     <div class="col-xs-12 col-sm-3">
@@ -155,7 +155,7 @@
   <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText3" md-items="movie in getMatches(searchText)" md-item-text="movie"  placeholder="Title">
   <span md-highlight-text="searchText">{{movie}}</span>
 </md-autocomplete>
-<md-button class="md-raised">Submit</md-button>
+<md-button class="md-raised profileBtn">Submit</md-button>
 <div class="well scrolly">
  <div class="panel trade-panel text-center history">
   <img src="http://placehold.it/50x75" alt="">

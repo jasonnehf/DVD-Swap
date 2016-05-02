@@ -1,4 +1,5 @@
 $interestPrimary: #97c52c;
+$secondary: #325d88;
 
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,200);
@@ -87,5 +88,10 @@ svg#bigTriangleColor {
 .dvds {
 min-height: 415px;
 }
+
+.profileBtn {
+  background-color: $secondary !important;
+}
+
 
 
