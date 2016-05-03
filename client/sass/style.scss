@@ -24,7 +24,6 @@ body {
   padding-top: 62px;
 }
 
-
 .modal {
   top: 10;
 }
@@ -75,10 +74,18 @@ svg#bigTriangleColor {
   background-color: $interestPrimary;
 }
 
-.well {
+.panel-default>.panel-heading {
   background-color: $interestPrimary;
-  // font-size: 5rem;
-  // color: white;
+}
+
+.panel-title{
+  color: white !important;
+  font-weight: bold !important;
+  display: inline-block;
+}
+.well {
+  background-color: #F6F5F1;
+  box-shadow: 2px 2px 5px #888888;
 }
 .scrolly {
   height: 400px;
@@ -86,12 +93,55 @@ svg#bigTriangleColor {
 }
 
 .dvds {
-min-height: 415px;
+  min-height: 415px;
 }
 
 .profileBtn {
   background-color: $secondary !important;
+  color:white !important;
 }
 
+.buttonBox {
+  text-align: center;
+}
+.inboxTradeBtn {
+  display: inline-block;
+}
+
+.trash {
+  float: right;
+}
+
+.modal-dialog {
+  top: calc(50vh - 130px);
+}
+.modal-footer, .modal-header {
+ background-color: #F6F5F1;
+}
+
+.modalBtn {
+  line-height: 10px;
+}
+
+.md-button.md-fab {
+  line-height: 5.6rem;
+  min-width: 0;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+}
+
+i.fa.fa-arrow-right {
+  top: -9px;
+  position: relative;
+}
+
+.profileInput {
+  width: 294px !important;
+}
+
+.movieCont {
+  background-color: black;
+}
 
 

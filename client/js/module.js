@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('dvdSwap', ['ui.router', 'ngMaterial'])
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, $locationProvider){
 
 
   $urlRouterProvider.otherwise("/");
@@ -16,11 +16,6 @@ angular.module('dvdSwap', ['ui.router', 'ngMaterial'])
     url: "/profile",
     templateUrl: "html/profile.html",
     controller: "userCtrl"
-  })
-  .state('login', {
-    url: "/login",
-    templateUrl: "html/login.html",
-    controller: "loginCtrl"
   })
   .state('admin', {
     url: "/admin",
@@ -42,5 +37,11 @@ angular.module('dvdSwap', ['ui.router', 'ngMaterial'])
     templateUrl: "html/goodbye.html"
   }) 
 
+
+$locationProvider.html5Mode({
+  enabled:true,
+  requireBase: true,
+  rewriteLinks: false
+});
 
 })

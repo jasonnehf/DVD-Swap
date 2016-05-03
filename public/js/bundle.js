@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dvdSwap', ['ui.router', 'ngMaterial']).config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
+angular.module('dvdSwap', ['ui.router', 'ngMaterial']).config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $urlRouterProvider.otherwise("/");
 
@@ -12,10 +12,6 @@ angular.module('dvdSwap', ['ui.router', 'ngMaterial']).config(["$stateProvider",
     url: "/profile",
     templateUrl: "html/profile.html",
     controller: "userCtrl"
-  }).state('login', {
-    url: "/login",
-    templateUrl: "html/login.html",
-    controller: "loginCtrl"
   }).state('admin', {
     url: "/admin",
     templateUrl: "html/admin.html",
@@ -31,6 +27,12 @@ angular.module('dvdSwap', ['ui.router', 'ngMaterial']).config(["$stateProvider",
   }).state('goodbye', {
     url: "/goodbye",
     templateUrl: "html/goodbye.html"
+  });
+
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: true,
+    rewriteLinks: false
   });
 }]);
 'use strict';
@@ -62,13 +64,7 @@ angular.module('dvdSwap').controller('interestCtrl', ["$scope", "UserService", f
     });
   };
 }]);
-
-'use strict';
-
-// angular.module('dvdSwap')
-// .controller('LoginCtrl', function () {
-//     this.isLogged = false;
-// });
+"use strict";
 'use strict';
 
 angular.module('dvdSwap').controller('navCtrl', ["$scope", "UserService", "$rootScope", "$state", function ($scope, UserService, $rootScope, $state) {
