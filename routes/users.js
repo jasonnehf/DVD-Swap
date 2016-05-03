@@ -12,6 +12,30 @@ router.get('/', function(req, res) { // done!
 
   });
 });
+
+router.get('/:id', function(req, res) { //other code.
+	var id = req.params.id;
+	console.log(id);
+	User.findById({_id: User.id}, function(err, user) {
+		if(err) {
+		return res.status(400).send(err);
+		}
+		res.send(user);
+	})
+});
+
+router.get('/movie', function(req, res) {
+  request('??imdb api??', function (error, response, body) {
+  request('??imdb api??', function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log('res', body);
+    res.send(body);
+    }
+    else {
+      console.log(error);
+    }
+  })
+});
 // router.post('/', function(req, res) { // done!
 //   console.log('req.bodyGet:',req.body);
 //   User.find({}, function(err, users) {
@@ -58,5 +82,15 @@ router.put('/:id', function(req, res) { // Done! PUT
       res.status(err ? 400 : 200).send(err || user);
     });
   });
+
+  router.delete('/:id', function(req, res) {
+  	Reservation.remove({_id:req.params.id}, function(err) {
+  		if(err) {
+  			return console.log(err)
+  	   } else {
+          res.send('peace');
+  		        }
+  	  })
+  	})
 
 module.exports = router;
