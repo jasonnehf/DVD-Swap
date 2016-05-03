@@ -84,8 +84,10 @@ svg#bigTriangleColor {
   display: inline-block;
 }
 .well {
-  background-color: #F6F5F1;
+  background-color: white;
   box-shadow: 2px 2px 5px #888888;
+
+
 }
 .scrolly {
   height: 400px;
@@ -141,7 +143,11 @@ i.fa.fa-arrow-right {
 }
 
 .movieCont {
-  background-color: black;
+
 }
-
-
+.col-xs-12 {
+  top: 33px;
+}
+.col-xs-3 {
+  top: 69px;
+}
