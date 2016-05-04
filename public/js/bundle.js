@@ -53,13 +53,6 @@ angular.module('dvdSwap').controller('browseCtrl', ["$scope", "MovieService", fu
 }]);
 'use strict';
 
-angular.module('dvdSwap').controller('loginCtrl', ["$scope", function ($scope) {}]);
-
-angular.module('dvdSwap').controller('adminCtrl', ["$scope", function ($scope) {}]);
-
-angular.module('dvdSwap').controller('adminCtrl', ["$scope", function ($scope) {}]);
-'use strict';
-
 angular.module('dvdSwap').controller('interestCtrl', ["$scope", "UserService", "MovieService", function ($scope, UserService, MovieService) {
 
   angular.element(document).ready(function () {
@@ -159,24 +152,30 @@ angular.module('dvdSwap').controller('profileCtrl', ["$scope", "UserService", "$
 }]);
 'use strict';
 
-angular.module('dvdSwap').service('MovieService', ["$http", function ($http) {
+angular.module('dvdSwap').service('MovieService', ["$http", "$window", function ($http, $window) {
+	//get all the movies from the have list
+	this.getAllHaves = function () {
+		return $http.get('/movies/have');
+	};
+	this.getMovieMatches = function (text) {
+		if (!text) return;
+		var newText = text.replace(/\s/g, "").toLowerCase().slice(0, 5);
+		var firstLetter = newText.charAt(0);
+		var outside = {};
+		var url = 'http://sg.media-imdb.com/suggests/' + newText.charAt(0) + '/' + newText + '.json?callback=JSON_CALLBACK';
+		$window["imdb$" + newText] = function (stuff) {
+			return stuff;
+		};
+		//implement it
 
-  //get all the movies from the have list
-  this.getAllHaves = function () {
-    return $http.get('/movies/have');
-  };
-
-  this.getMovieMatches = function (text) {
-    var newText = text.replace(/\s/g, "").toLowerCase().slice(0, 5);
-    var firstLetter = newText.charAt(0);
-    console.log(' firstLetter  ', firstLetter);
-    var url = 'http://sg.media-imdb.com/suggests/' + firstLetter + '/' + newText + '.json';
-    console.log(url);
-    $http.jsonp(url).then(function (json) {
-      console.log(json);
-      // $scope.response = json.data.data;
-    });
-  };
+		//test it
+		$http.jsonp(url).then(function (json) {
+			console.log(json);
+		}, function (err) {
+			console.log("FUCKED UP");
+			console.log(err);
+		});
+	};
 }]);
 'use strict';
 
