@@ -4,18 +4,18 @@ angular.module('dvdSwap', ['ui.router', 'ngMaterial'])
 .config(function($stateProvider, $urlRouterProvider, $locationProvider){
 
 
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("interest");
 
   $stateProvider
   .state('browse', {
-    url: "/",
+    url: "/browse",
     templateUrl: "html/browse.html",
     controller: "browseCtrl"
   })
   .state('profile', {
     url: "/profile",
     templateUrl: "html/profile.html",
-    controller: "userCtrl"
+    controller: "profileCtrl"
   })
   .state('admin', {
     url: "/admin",

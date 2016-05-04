@@ -1,7 +1,3 @@
-angular.module('dvdSwap')
-.controller('browseCtrl', function($scope){
-
-})
 
 angular.module('dvdSwap')
 .controller('loginCtrl', function($scope){

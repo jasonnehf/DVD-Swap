@@ -4,8 +4,6 @@ angular.module('dvdSwap')
 .controller('navCtrl', function($scope, UserService, $rootScope, $state) {
 
 
-
-
 $scope.logout = function(user){
   UserService.logoutUser(user)
   .then(function(){
@@ -17,5 +15,9 @@ $scope.logout = function(user){
 }
 
 
+
+
+
+$scope.user = $rootScope.user
 
 })
