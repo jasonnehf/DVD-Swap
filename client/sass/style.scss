@@ -1,4 +1,17 @@
 $interestPrimary: #97c52c;
+$secondary: #325d88;
+
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,200);
+
+@font-face {
+  font-family: "splashFont";
+  src: url("../media/HVD_Comic_Serif_Pro-webfont.woff") format("woff");
+}
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
 
 footer {
 
@@ -11,6 +24,18 @@ body {
   padding-top: 62px;
 }
 
+.modal {
+  top: 10;
+}
+
+.btn:focus{
+  outline: none;
+}
+
+#myModal {
+  vertical-align: middle;
+}
+
 md-autocomplete {
   display: inline-block;
   width: calc(100% - 108px);
@@ -18,9 +43,12 @@ md-autocomplete {
 }
 
 div.jumbotron {
+  height: 80%;
   background-color: $interestPrimary;
   margin: 0;
+  padding-top: 10%;
 }
+
 
 svg#bigTriangleColor {
   pointer-events: none;
@@ -32,3 +60,94 @@ svg#bigTriangleColor {
   stroke-width: 2;
 }
 
+.splash {
+  height: 100vh;
+  color: white;
+  h1 {
+    font-size: 7rem;
+    margin-left: 0px;
+    font-family: "splashFont";
+  }
+}
+
+.closeModal {
+  background-color: $interestPrimary;
+}
+
+.panel-default>.panel-heading {
+  background-color: $interestPrimary;
+}
+
+.panel-title{
+  color: white !important;
+  font-weight: bold !important;
+  display: inline-block;
+}
+.well {
+  background-color: white;
+  box-shadow: 2px 2px 5px #888888;
+
+
+}
+.scrolly {
+  height: 400px;
+  overflow-x: scroll;
+}
+
+.dvds {
+  min-height: 415px;
+}
+
+.profileBtn {
+  background-color: $secondary !important;
+  color:white !important;
+}
+
+.buttonBox {
+  text-align: center;
+}
+.inboxTradeBtn {
+  display: inline-block;
+}
+
+.trash {
+  float: right;
+}
+
+.modal-dialog {
+  top: calc(50vh - 130px);
+}
+.modal-footer, .modal-header {
+ background-color: #F6F5F1;
+}
+
+.modalBtn {
+  line-height: 10px;
+}
+
+.md-button.md-fab {
+  line-height: 5.6rem;
+  min-width: 0;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+}
+
+i.fa.fa-arrow-right {
+  top: -9px;
+  position: relative;
+}
+
+.profileInput {
+  width: 294px !important;
+}
+
+.movieCont {
+
+}
+.col-xs-12 {
+  top: 33px;
+}
+.col-xs-3 {
+  top: 69px;
+}
