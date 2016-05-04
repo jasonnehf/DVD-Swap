@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/profile', stormpath.getUser, function (req, res) {
+router.get('/me', stormpath.getUser, (req, res) => {
   console.log('user', req.user)
   if (req.user) {
     res.send(req.user);
@@ -16,6 +16,18 @@ router.get('/profile', stormpath.getUser, function (req, res) {
     res.status(401).send('Not logged in');
   }
 });
+
+var fakeUser = {
+  name: "blah",
+  haves: [],
+  wants: []
+}
+
+
+router.put('/have', (req, res) => {
+  fakeUser.haves.push(req.body)
+  res.send(fakeUser)
+})
 
 
 

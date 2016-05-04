@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('dvdSwap')
-.controller('interestCtrl', function($scope, UserService) {
+.controller('interestCtrl', function($scope, UserService, MovieService) {
 
   angular.element(document).ready(function(){
 
@@ -14,12 +14,26 @@ angular.module('dvdSwap')
   })
 
 
-var movies = ["movie1", "movie2", "movie3"];
+  MovieService.getAllHaves()
+  .then(function(res){
+    $scope.movies = res.data
+    
+  }, function(err){
+    console.error(err)
+  })
 
- $scope.getMatches = function(text){
-  return movies.filter(movie=> movie.includes(text))
+
+  $scope.getMatches = function(text){
+    text = text.toLowerCase();
+    return $scope.movies.filter(movie=> movie.title.toLowerCase().includes(text)).splice(0,5)
+
+  }
 
 
-}
+
+
+
+
+
 
 })

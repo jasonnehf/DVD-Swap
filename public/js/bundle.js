@@ -2,16 +2,16 @@
 
 angular.module('dvdSwap', ['ui.router', 'ngMaterial']).config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("interest");
 
   $stateProvider.state('browse', {
-    url: "/",
+    url: "/browse",
     templateUrl: "html/browse.html",
     controller: "browseCtrl"
   }).state('profile', {
     url: "/profile",
     templateUrl: "html/profile.html",
-    controller: "userCtrl"
+    controller: "profileCtrl"
   }).state('admin', {
     url: "/admin",
     templateUrl: "html/admin.html",
@@ -37,7 +37,21 @@ angular.module('dvdSwap', ['ui.router', 'ngMaterial']).config(["$stateProvider",
 }]);
 'use strict';
 
-angular.module('dvdSwap').controller('browseCtrl', ["$scope", function ($scope) {}]);
+angular.module('dvdSwap').controller('browseCtrl', ["$scope", "MovieService", function ($scope, MovieService) {
+
+  //get all movies people want to trade on page load ) 12 at a time?
+
+  MovieService.getAllHaves().then(function (res) {
+    $scope.movies = res.data;
+    console.log($scope.movies);
+  }, function (err) {
+    console.error(err);
+  });
+
+  // this.genres = ('comedy romance adventure').split(' ').map(function (genres) { return { genre: genres }; });
+  // console.log(this.genres)
+}]);
+'use strict';
 
 angular.module('dvdSwap').controller('loginCtrl', ["$scope", function ($scope) {}]);
 
@@ -46,7 +60,7 @@ angular.module('dvdSwap').controller('adminCtrl', ["$scope", function ($scope) {
 angular.module('dvdSwap').controller('adminCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
-angular.module('dvdSwap').controller('interestCtrl', ["$scope", "UserService", function ($scope, UserService) {
+angular.module('dvdSwap').controller('interestCtrl', ["$scope", "UserService", "MovieService", function ($scope, UserService, MovieService) {
 
   angular.element(document).ready(function () {
 
@@ -56,12 +70,17 @@ angular.module('dvdSwap').controller('interestCtrl', ["$scope", "UserService", f
     });
   });
 
-  var movies = ["movie1", "movie2", "movie3"];
+  MovieService.getAllHaves().then(function (res) {
+    $scope.movies = res.data;
+  }, function (err) {
+    console.error(err);
+  });
 
   $scope.getMatches = function (text) {
-    return movies.filter(function (movie) {
-      return movie.includes(text);
-    });
+    text = text.toLowerCase();
+    return $scope.movies.filter(function (movie) {
+      return movie.title.toLowerCase().includes(text);
+    }).splice(0, 5);
   };
 }]);
 "use strict";
@@ -77,42 +96,94 @@ angular.module('dvdSwap').controller('navCtrl', ["$scope", "UserService", "$root
       console.log('err', err);
     });
   };
+
+  $scope.user = $rootScope.user;
 }]);
 'use strict';
 
-angular.module('dvdSwap').controller('userCtrl', ["$scope", "UserService", "$rootScope", "$state", function ($scope, UserService, $rootScope, $state) {
+angular.module('dvdSwap').controller('profileCtrl', ["$scope", "UserService", "$rootScope", "$state", "MovieService", function ($scope, UserService, $rootScope, $state, MovieService) {
 
   UserService.getUser().catch(function (res) {
     $state.go('interest');
   });
 
-  var movies = ["movie1", "movie2", "movie3", "movie4"];
+  $scope.searchTextChange = function (text) {
+    MovieService.getMovieMatches(text);
+  };
+  // MovieService.getAllMovies()
+  //   .then(function(res){
+  //   $scope.movies = res.data
+  //   console.log('$scope.movies ' , $scope.movies);
+
+  // }, function(err){
+  //   console.error(err)
+  // })
 
   $scope.getMatches = function (text) {
-    return movies.filter(function (movie) {
-      return movie.includes(text);
+    text = text.toLowerCase();
+    return $scope.movies.filter(function (movie) {
+      return movie.title.toLowerCase().includes(text);
     });
   };
 
-  $scope.movieHave = [];
-
   // add disable button if nothing is in search bar
+
   $scope.addHave = function (searchText) {
-    $scope.movieHave.push(searchText);
+    console.log("click", searchText);
+    UserService.addHave(searchText).then(function (res) {
+
+      console.log(res);
+      $scope.profileUser = res.data;
+    }, function (err) {
+      console.error(err);
+    });
   };
+
+  $scope.bai = function (movie) {
+    // UserService.deleteHave(movie)
+    var index = $scope.profileUser.haves.indexOf(movie);
+    $scope.profileUser.haves.splice(index, 1);
+  };
+
+  // UserService.addHave()
+  // .then(function(res){
+
+  // }, function(err){
+  //   console.error(err)
+  // })
 
   $scope.movieWant = [];
   $scope.addWant = function (searchText2) {
     $scope.movieWant.push(searchText2);
   };
 }]);
-"use strict";
+'use strict';
+
+angular.module('dvdSwap').service('MovieService', ["$http", function ($http) {
+
+  //get all the movies from the have list
+  this.getAllHaves = function () {
+    return $http.get('/movies/have');
+  };
+
+  this.getMovieMatches = function (text) {
+    var newText = text.replace(/\s/g, "").toLowerCase().slice(0, 5);
+    var firstLetter = newText.charAt(0);
+    console.log(' firstLetter  ', firstLetter);
+    var url = 'http://sg.media-imdb.com/suggests/' + firstLetter + '/' + newText + '.json';
+    console.log(url);
+    $http.jsonp(url).then(function (json) {
+      console.log(json);
+      // $scope.response = json.data.data;
+    });
+  };
+}]);
 'use strict';
 
 angular.module('dvdSwap').service('UserService', ["$http", "$rootScope", function ($http, $rootScope) {
 
   this.getUser = function () {
-    return $http.get('/users/profile').then(function (res) {
+    return $http.get('/users/me').then(function (res) {
       $rootScope.user = res.data;
       console.log(res.data);
     }, function (err) {
@@ -122,7 +193,22 @@ angular.module('dvdSwap').service('UserService', ["$http", "$rootScope", functio
     });
   };
 
+  this.getAllWants = function () {
+    return $http.get('/users/want');
+  };
+
+  // get http:.get(user /profile to get the user info from DB
+
   this.logoutUser = function () {
     return $http.post('/logout');
+  };
+
+  this.addHave = function (title) {
+    console.log(title);
+    return $http.put('/users/have', { title: title });
+  };
+
+  this.deleteHave = function (movie) {
+    return $http.delete('/users/have');
   };
 }]);
