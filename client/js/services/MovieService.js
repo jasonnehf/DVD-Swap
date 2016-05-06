@@ -16,7 +16,7 @@ angular.module('dvdSwap').service('MovieService', function($http, $window) {
 		//test it
 		$http.jsonp(url)
 			.then(function(json) {
-				console.log(json)
+				console.log(json);
 			}, function(err) {
 				console.log("FUCKED UP");
 				console.log(err);
