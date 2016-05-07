@@ -107,24 +107,47 @@ angular.module('dvdSwap').controller('profileCtrl', ["$scope", "UserService", "$
     $state.go('interest');
   });
 
+  // $scope.$watch(function() {
+  //     return $scope.autocomplete;
+  //   }, function() {
+  //     return $scope.getAutocomplete();
+  //   });
+
+  // $scope.getAutocomplete = function () {
+  //   return $scope.autocomplete;
+  // }
+
   $scope.searchTextChange = function (text) {
-    MovieService.getMovieMatches(text);
-  };
-  // MovieService.getAllMovies()
-  //   .then(function(res){
-  //   $scope.movies = res.data
-  //   console.log('$scope.movies ' , $scope.movies);
 
-  // }, function(err){
-  //   console.error(err)
-  // })
+    if (text.length < 3) {
+      $scope.autocomplete = [];
+      console.log($scope.autocomplete);
+      return [];
+    }
+    MovieService.getMovieMatches(text).then(function (res) {
 
-  $scope.getMatches = function (text) {
-    text = text.toLowerCase();
-    return $scope.movies.filter(function (movie) {
-      return movie.title.toLowerCase().includes(text);
+      console.log('res', res);
+      $scope.autocomplete = res.data.Search;
+    }, function (err) {
+
+      $scope.autocomplete = [];
+      console.error(err);
     });
   };
+
+  // MovieService.getAllMovies()
+  //   .then(function(res){
+  //     $scope.movies = res.data
+  //     console.log('$scope.movies ' , $scope.movies);
+
+  //   }, function(err){
+  //     console.error(err)
+  //   })
+
+  // $scope.getMatches = function(text){
+  //   text = text.toLowerCase()
+  //   return $scope.movies.filter(movie=> movie.title.toLowerCase().includes(text))
+  // }
 
   // add disable button if nothing is in search bar
 
@@ -167,15 +190,17 @@ angular.module('dvdSwap').service('MovieService', ["$http", function ($http) {
   };
 
   this.getMovieMatches = function (text) {
-    var newText = text.replace(/\s/g, "").toLowerCase().slice(0, 5);
-    var firstLetter = newText.charAt(0);
-    console.log(' firstLetter  ', firstLetter);
-    var url = 'http://sg.media-imdb.com/suggests/' + firstLetter + '/' + newText + '.json';
-    console.log(url);
-    $http.jsonp(url).then(function (json) {
-      console.log(json);
-      // $scope.response = json.data.data;
-    });
+    return $http.get('http://www.omdbapi.com/?s=' + text + '&y=&plot=short&r=json');
+    // var newText = text.replace(/\s/g,"").toLowerCase().slice(0,5)
+    // var firstLetter = newText.charAt(0)
+    // console.log(' firstLetter  ' ,  firstLetter );
+    // var url = `http://sg.media-imdb.com/suggests/${firstLetter}/${newText}.json`
+    // console.log(url)
+    // $http.jsonp(url)
+    // .then(function(json) {
+    //  console.log(json)
+    // $scope.response = json.data.data;
+    // });
   };
 }]);
 'use strict';

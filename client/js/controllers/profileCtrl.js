@@ -9,24 +9,56 @@ angular.module('dvdSwap')
    $state.go('interest')
  })
  
+// $scope.$watch(function() {
+//     return $scope.autocomplete;
+//   }, function() {
+//     return $scope.getAutocomplete();
+//   });
+
+// $scope.getAutocomplete = function () {
+//   return $scope.autocomplete;
+// }
+
 
 
  $scope.searchTextChange = function(text){
+
+  if(text.length < 3){
+    $scope.autocomplete = []
+    console.log($scope.autocomplete)
+    return []
+  }
   MovieService.getMovieMatches(text)
+  .then(function(res){
+
+    console.log('res', res)
+    $scope.autocomplete = res.data.Search
+
+
+
+
+  }, function(err){
+
+    $scope.autocomplete = []
+    console.error(err)
+
+  })
 }
+
+
 // MovieService.getAllMovies()
 //   .then(function(res){
-  //   $scope.movies = res.data
-  //   console.log('$scope.movies ' , $scope.movies);
+//     $scope.movies = res.data
+//     console.log('$scope.movies ' , $scope.movies);
 
-  // }, function(err){
-  //   console.error(err)
-  // })
+//   }, function(err){
+//     console.error(err)
+//   })
 
-  $scope.getMatches = function(text){
-    text = text.toLowerCase()
-    return $scope.movies.filter(movie=> movie.title.toLowerCase().includes(text))
-  }
+// $scope.getMatches = function(text){
+//   text = text.toLowerCase()
+//   return $scope.movies.filter(movie=> movie.title.toLowerCase().includes(text))
+// }
 
 // add disable button if nothing is in search bar
 
